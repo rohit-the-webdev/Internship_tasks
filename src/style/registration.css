@@ -5,7 +5,7 @@ form{
     position: relative;
 }
 
-.ipgroup input {
+.ipgroup input,textarea {
     padding: 14px 12px;
     font-size: 16px;
 }
@@ -25,6 +25,7 @@ form{
 
 /* Floating effect */
 .ipgroup input:focus ~ label,
+.ingroup textarea:focus ~ label,
 .ipgroup input:valid ~ label {
     top: 0;
     font-size: 13px;

@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState,React} from 'react'
 import '../style/registration.css'
 
 function RegistrationForm() {
@@ -6,7 +6,7 @@ function RegistrationForm() {
     name: '',
     age: '',
     email: '',
-    phone: '',
+    phoneNo: '',
     address: ''
   })
 
@@ -19,11 +19,24 @@ function RegistrationForm() {
 
   const handleSubtmit =(e)=>{
 
+    const data={
+        name,
+        age,
+        email,
+        phoneNo,
+        address
+    }
+
+    const allUsers = JSON.parse(localStorage.getItem(formData)) || [];
+    allUsers.push(data);
+    
     localStorage.setItem(
         "FormData", JSON.stringify(formData)
     )
     alert("registration successful")
   }
+
+  
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
@@ -32,27 +45,27 @@ function RegistrationForm() {
         <h4 className="text-center mb-4 fw-bold">Registration Form</h4>
 
         <div className="ipgroup mb-3">
-          <input type="text" name='name' className="form-control" required />
+          <input type="text" name='name' className="form-control" onChange={handleChange} required />
           <label>Enter Name</label>
         </div>
 
         <div className="ipgroup mb-3">
-          <input type="text" className="form-control" required />
+          <input type="text" name='age' className="form-control" onChange={handleChange} required/>
           <label>Enter Age</label>
         </div>
 
         <div className="ipgroup mb-3">
-          <input type="email" className="form-control" required />
+          <input type="email" name='email' className="form-control" onChange={handleChange} required/>
           <label>Email Address</label>
         </div>
 
         <div className="ipgroup mb-3">
-          <input type="text" className="form-control" required />
+          <input type="text" name='phoneNo' className="form-control" onChange={handleChange} required />
           <label>Phone Number</label>
         </div>
 
         <div className="ipgroup mb-4">
-          <input type="text" className="form-control" required />
+          <textarea type="text" name='address' className="form-control" onChange={handleChange} required />
           <label>Address</label>
         </div>
 
