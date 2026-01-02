@@ -18,16 +18,11 @@ function RegistrationForm() {
   }
 
   const handleSubtmit =(e)=>{
+    e.preventDefault();
 
-    const data={
-        Uname,
-        age,
-        email,
-        phoneNo,
-        address
-    }
+    const data = { ...formData };
 
-    const allUsers = JSON.parse(localStorage.getItem(formData)) || [];
+    const allUsers = JSON.parse(localStorage.getItem("FormData")) || [];
     allUsers.push(data);
 
     localStorage.setItem(

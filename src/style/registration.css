@@ -24,8 +24,8 @@ form{
 }
 
 /* Floating effect */
-.ipgroup input:focus ~ label,
-.ingroup textarea:focus ~ label,
+.ipgroup input,textarea:focus ~ label,
+/* .ingroup textarea:focus ~ label, */
 .ipgroup input:valid ~ label {
     top: 0;
     font-size: 13px;
