@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { use } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const currentEmail = localStorage.getItem("loginEmail");
   const [email, setEmail] = useState(currentEmail || "");
+  const navigate = useNavigate();
 
   if (currentEmail) {
     localStorage.removeItem("loginEmail");
@@ -13,13 +16,31 @@ function LoginForm() {
 
     const users = JSON.parse(localStorage.getItem("FormData")) || [];
 
-    const emailcheck = users.some((user) => user.email === email);
+    const loggedUser = users.find(
+        (user)=>user.email===email
+    );
 
-    if (emailcheck) {
-      console.log("email found");
-    } else {
-      console.log("email not found");
+    if(loggedUser){
+        localStorage.setItem(
+            "loggedinUser", JSON.stringify(loggedUser)
+        );
+
+        console.log("login successful");
+
+        navigate("/dashboard");
     }
+    else{
+        console.log("email not found");
+        
+    }
+
+    // const emailcheck = users.some((user) => user.email === email);
+
+    // if (emailcheck) {
+    //   console.log("email found");
+    // } else {
+    //   console.log("email not found");
+    // }
   };
 
   return (

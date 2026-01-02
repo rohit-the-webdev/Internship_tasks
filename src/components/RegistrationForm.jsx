@@ -9,7 +9,8 @@ function RegistrationForm() {
     email: '',
     phoneNo: '',
     address: '',
-    pincode:''
+    pincode:'',
+    password:''
   })
 
   const navigate = useNavigate();
