@@ -3,7 +3,7 @@ import '../style/registration.css'
 
 function RegistrationForm() {
     const [formData, setFormData] = useState({
-    name: '',
+    Uname: '',
     age: '',
     email: '',
     phoneNo: '',
@@ -20,7 +20,7 @@ function RegistrationForm() {
   const handleSubtmit =(e)=>{
 
     const data={
-        name,
+        Uname,
         age,
         email,
         phoneNo,
@@ -29,9 +29,9 @@ function RegistrationForm() {
 
     const allUsers = JSON.parse(localStorage.getItem(formData)) || [];
     allUsers.push(data);
-    
+
     localStorage.setItem(
-        "FormData", JSON.stringify(formData)
+        "FormData", JSON.stringify(allUsers)
     )
     alert("registration successful")
   }
@@ -45,7 +45,7 @@ function RegistrationForm() {
         <h4 className="text-center mb-4 fw-bold">Registration Form</h4>
 
         <div className="ipgroup mb-3">
-          <input type="text" name='name' className="form-control" onChange={handleChange} required />
+          <input type="text" name='Uname' className="form-control" onChange={handleChange} required />
           <label>Enter Name</label>
         </div>
 
