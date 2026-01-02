@@ -8,7 +8,8 @@ function RegistrationForm() {
     age: '',
     email: '',
     phoneNo: '',
-    address: ''
+    address: '',
+    pincode:''
   })
 
   const navigate = useNavigate();
@@ -67,6 +68,14 @@ function RegistrationForm() {
         <div className="ipgroup mb-4">
           <textarea type="text" name='address' className="form-control" onChange={handleChange} required />
           <label>Address</label>
+        </div>
+        <div className="ipgroup mb-3">
+          <input type="text" name='pincode' className="form-control" onChange={handleChange} required />
+          <label>Pincode</label>
+        </div>
+        <div className="ipgroup mb-3">
+          <input type="password" name='phoneNo' className="form-control" onChange={handleChange} required />
+          <label>password</label>
         </div>
 
         <button className="btn btn-primary w-100 fw-semibold">

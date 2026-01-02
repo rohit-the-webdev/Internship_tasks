@@ -1,8 +1,14 @@
 import React, {useState} from 'react'
 
 function LoginForm() {
-    const [email, setEmail] = useState(
-    localStorage.getItem("loginEmail") || "");
+    // const [email, setEmail] = useState(
+    // localStorage.getItem("loginEmail") || "");
+    const currentEmail = localStorage.getItem("loginEmail");
+    const [email, setEmail]=useState(currentEmail || "");
+
+    if(currentEmail){
+        localStorage.removeItem("loginEmail")
+    }
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
       <form className="bg-white p-4 rounded shadow-sm">
@@ -15,8 +21,8 @@ function LoginForm() {
         </div>
 
         <div className="ipgroup mb-3">
-          <input type="text" className="form-control" required />
-          <label>Enter Age</label>
+          <input type='password' className="form-control" required />
+          <label>Enter password</label>
         </div>
 
         <button className="btn btn-primary w-100 fw-semibold">
