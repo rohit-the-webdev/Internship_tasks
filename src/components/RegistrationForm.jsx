@@ -1,5 +1,6 @@
 import {useState,React} from 'react'
 import '../style/registration.css'
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
     const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ function RegistrationForm() {
     phoneNo: '',
     address: ''
   })
+
+  const navigate = useNavigate();
 
   const handleChange=(e)=>{
     setFormData({
@@ -29,9 +32,9 @@ function RegistrationForm() {
         "FormData", JSON.stringify(allUsers)
     )
     alert("registration successful")
-  }
 
-  
+    navigate("/login");
+  }
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">

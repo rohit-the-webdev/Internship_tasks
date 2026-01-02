@@ -24,9 +24,10 @@ form{
 }
 
 /* Floating effect */
-.ipgroup input,textarea:focus ~ label,
-/* .ingroup textarea:focus ~ label, */
-.ipgroup input:valid ~ label {
+.ipgroup input:focus ~ label,
+.ingroup textarea:focus ~ label,
+.ipgroup input:valid ~ label,
+.ipgroup textarea:valid ~ label {
     top: 0;
     font-size: 13px;
     color: #0d6efd; /* Bootstrap primary */

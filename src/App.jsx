@@ -1,13 +1,15 @@
-import { useState } from "react";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationForm";
+import Login from "./components/LoginForm";
 
 function App() {
-  const student = ["rohit","pratik","pooja"];
   return (
-    <>
-      <RegistrationForm/>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<RegistrationForm />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
