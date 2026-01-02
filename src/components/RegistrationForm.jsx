@@ -74,7 +74,7 @@ function RegistrationForm() {
           <label>Pincode</label>
         </div>
         <div className="ipgroup mb-3">
-          <input type="password" name='phoneNo' className="form-control" onChange={handleChange} required />
+          <input type="text" name='phoneNo' className="form-control" onChange={handleChange} required />
           <label>password</label>
         </div>
 
