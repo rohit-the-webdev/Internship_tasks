@@ -23,6 +23,8 @@ function RegistrationForm() {
   const handleSubtmit =(e)=>{
     e.preventDefault();
 
+    localStorage.setItem("loginEmail", formData.email);
+
     const data = { ...formData };
 
     const allUsers = JSON.parse(localStorage.getItem("FormData")) || [];
