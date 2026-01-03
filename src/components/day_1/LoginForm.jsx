@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 function LoginForm() {
   const currentEmail = localStorage.getItem("loginEmail");
   const [email, setEmail] = useState(currentEmail || "");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   if (currentEmail) {
@@ -15,23 +16,25 @@ function LoginForm() {
 
     const users = JSON.parse(localStorage.getItem("FormData")) || [];
 
-    const loggedUser = users.find(
-        (user)=>user.email===email
-    );
+    const loggedUser = users.find((user) => user.email === email);
 
-    if(loggedUser){
-        localStorage.setItem(
-            "loggedinUser", JSON.stringify(loggedUser)
-        );
+    if (!loggedUser) {
+    alert("User does not exist");
+    return;
+  }
 
-        console.log("login successful");
+  if (loggedUser.password !== password) {
+    alert("Incorrect password");
+    return;
+  }
 
-        navigate("/dashboard");
-    }
-    else{
-        alert("User not found");
-        
-    }
+  localStorage.setItem(
+    "loggedinUser",
+    JSON.stringify(loggedUser)
+  );
+
+  alert("Login successful ✅");
+  navigate("/dashboard");
 
     // const emailcheck = users.some((user) => user.email === email);
 
@@ -59,7 +62,13 @@ function LoginForm() {
         </div>
 
         <div className="ipgroup mb-3">
-          <input type="text" className="form-control" required />
+          <input
+            type="text"
+            className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <label>Enter password</label>
         </div>
 
