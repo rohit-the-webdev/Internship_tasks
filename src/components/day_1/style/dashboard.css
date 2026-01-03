@@ -1,0 +1,89 @@
+/* Full screen center */
+.dashboard-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2,
+    #6a11cb
+  );
+  padding: 20px;
+}
+
+/* Glass card */
+.dashboard-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25);
+
+  color: #fff;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Heading */
+.dashboard-card h2 {
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+/* Info section */
+.info {
+  text-align: left;
+  margin-top: 20px;
+}
+
+/* Each row */
+.info p {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+
+/* Labels */
+.info span {
+  font-weight: 600;
+  color: #ffd6ff;
+}
+
+/* No user fallback */
+.no-user {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  background: #111;
+  color: #fff;
+}
+
+/* Smooth entry */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

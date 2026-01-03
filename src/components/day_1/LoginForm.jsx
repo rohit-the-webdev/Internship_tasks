@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { use } from "react";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
@@ -30,7 +29,7 @@ function LoginForm() {
         navigate("/dashboard");
     }
     else{
-        console.log("email not found");
+        alert("User not found");
         
     }
 
