@@ -9,7 +9,7 @@ function Dashboard() {
   const [editMode, setEditMode] = useState(false);
   const [editableUser, setEditableUser] = useState(user);
 
-  const [showModal, setShowModal] = useState(false);
+  const [showPassField, setshowPassField] = useState(false);
 const [newPassword, setNewPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
 const [confirmCheck, setConfirmCheck] = useState(false);
@@ -58,13 +58,11 @@ const handlePasswordChange = () => {
 
   const updatedUser = { ...editableUser, password: newPassword };
 
-  // update logged-in user
   localStorage.setItem(
     "loggedinUser",
     JSON.stringify(updatedUser)
   );
 
-  // update user in FormData array
   const users = JSON.parse(localStorage.getItem("FormData")) || [];
 
   const updatedUsers = users.map((u) =>
@@ -73,7 +71,7 @@ const handlePasswordChange = () => {
 
   localStorage.setItem("FormData", JSON.stringify(updatedUsers));
 
-  setShowModal(false);
+  setshowPassField(false);
   setNewPassword("");
   setConfirmPassword("");
   setConfirmCheck(false);
@@ -111,12 +109,12 @@ const handlePasswordChange = () => {
         {!editMode && (
   <button
     className="change-pass-btn"
-    onClick={() => setShowModal(true)}
+    onClick={() => setshowPassField(true)}
   >
     Change Password
   </button>
 )}
-{showModal && (
+{showPassField && (
   <div className="modal-overlay">
     <div className="modal-box">
       <h3>Change Password</h3>
@@ -148,7 +146,7 @@ const handlePasswordChange = () => {
         <button onClick={handlePasswordChange}>
           Update Password
         </button>
-        <button onClick={() => setShowModal(false)}>
+        <button onClick={() => setshowPassField(false)}>
           Cancel
         </button>
       </div>
