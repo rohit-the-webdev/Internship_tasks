@@ -11,30 +11,34 @@ function LoginForm() {
     localStorage.removeItem("loginEmail");
   }
 
-  const handlelogin = (e) => {
+  const handlelogin = async (e) => {
     e.preventDefault();
 
-    const users = JSON.parse(localStorage.getItem("FormData")) || [];
+    try {
+      const response = await fetch("http://localhost:5000/api/login",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const data = await response.json();
 
-    const loggedUser = users.find((user) => user.email === email);
-
-    if (!loggedUser) {
-    alert("User does not exist");
-    return;
+    if (!response.ok){
+      alert(data.message);
+      return;
+    } 
+    localStorage.setItem(
+      "loggedinUser",
+      JSON.stringify(data.user)
+    );
+    navigate("/dashboard");
+  } catch (error){
+    alert("server error. please fix erros");
   }
-
-  if (loggedUser.password !== password) {
-    alert("Incorrect password");
-    return;
-  }
-
-  localStorage.setItem(
-    "loggedinUser",
-    JSON.stringify(loggedUser)
-  );
-
-  alert("Login successful ✅");
-  navigate("/dashboard");
 
     // const emailcheck = users.some((user) => user.email === email);
 
@@ -63,7 +67,7 @@ function LoginForm() {
 
         <div className="ipgroup mb-3">
           <input
-            type="text"
+            type="password"
             className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

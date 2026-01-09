@@ -10,10 +10,9 @@ function Dashboard() {
   const [editableUser, setEditableUser] = useState(user);
 
   const [showPassField, setshowPassField] = useState(false);
-const [newPassword, setNewPassword] = useState("");
-const [confirmPassword, setConfirmPassword] = useState("");
-const [confirmCheck, setConfirmCheck] = useState(false);
-
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmCheck, setConfirmCheck] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem("loggedinUser");
@@ -31,53 +30,84 @@ const [confirmCheck, setConfirmCheck] = useState(false);
     alert("log out successful");
     navigate("/login");
   };
-  const handleUpdateProfile = () => {
-    localStorage.setItem("loggedinUser", JSON.stringify(editableUser));
+  const handleUpdateProfile = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/user/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: editableUser.email,
+          Uname: editableUser.Uname,
+          age: editableUser.age,
+          phoneNo: editableUser.phoneNo,
+          address: editableUser.address,
+          pincode: editableUser.pincode,
+        }),
+      });
 
-    const users = JSON.parse(localStorage.getItem("FormData")) || [];
+      const data = await response.json();
 
-    const updatedUsers = users.map((u) =>
-      u.email === editableUser.email ? editableUser : u
-    );
+      if (!response.ok) {
+        alert(data.message);
+        return;
+      }
 
-    localStorage.setItem("FormData", JSON.stringify(updatedUsers));
+      // update local session user
+      localStorage.setItem("loggedinUser", JSON.stringify(data.user));
 
-    setEditMode(false);
-    alert("Profile updated successfully");
+      setEditMode(false);
+      alert("Profile updated successfully");
+    } catch (error) {
+      alert("Server error while updating profile");
+    }
   };
-const handlePasswordChange = () => {
-  if (!confirmCheck) {
-    alert("Please confirm password change");
-    return;
-  }
 
-  if (newPassword !== confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
+  const handlePasswordChange = async () => {
+    if (!confirmCheck) {
+      alert("Please confirm password change");
+      return;
+    }
 
-  const updatedUser = { ...editableUser, password: newPassword };
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
 
-  localStorage.setItem(
-    "loggedinUser",
-    JSON.stringify(updatedUser)
-  );
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/user/change-password",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+            newPassword: newPassword,
+          }),
+        }
+      );
 
-  const users = JSON.parse(localStorage.getItem("FormData")) || [];
+      const data = await response.json();
 
-  const updatedUsers = users.map((u) =>
-    u.email === updatedUser.email ? updatedUser : u
-  );
+      if (!response.ok) {
+        alert(data.message);
+        return;
+      }
 
-  localStorage.setItem("FormData", JSON.stringify(updatedUsers));
+      alert("Password updated successfully");
 
-  setshowPassField(false);
-  setNewPassword("");
-  setConfirmPassword("");
-  setConfirmCheck(false);
-
-  alert("Password updated successfully");
-};
+      // reset modal state
+      setShowModal(false);
+      setNewPassword("");
+      setConfirmPassword("");
+      setConfirmCheck(false);
+    } catch (error) {
+      alert("Server error while updating password");
+    }
+  };
 
   return (
     <div className="dashboard-wrapper">
@@ -107,53 +137,48 @@ const handlePasswordChange = () => {
           </button>
         )}
         {!editMode && (
-  <button
-    className="change-pass-btn"
-    onClick={() => setshowPassField(true)}
-  >
-    Change Password
-  </button>
-)}
-{showPassField && (
-  <div className="modal-overlay">
-    <div className="modal-box">
-      <h3>Change Password</h3>
+          <button
+            className="change-pass-btn"
+            onClick={() => setshowPassField(true)}
+          >
+            Change Password
+          </button>
+        )}
+        {showPassField && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h3>Change Password</h3>
 
-      <input
-        type="password"
-        placeholder="New Password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
+              <input
+                type="password"
+                placeholder="New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
 
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
 
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={confirmCheck}
-          onChange={() => setConfirmCheck(!confirmCheck)}
-        />
-        I confirm to change my password
-      </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  checked={confirmCheck}
+                  onChange={() => setConfirmCheck(!confirmCheck)}
+                />
+                I confirm to change my password
+              </label>
 
-      <div className="modal-actions">
-        <button onClick={handlePasswordChange}>
-          Update Password
-        </button>
-        <button onClick={() => setshowPassField(false)}>
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
+              <div className="modal-actions">
+                <button type="button" onClick={handlePasswordChange}>Update Password</button>
+                <button onClick={() => setshowPassField(false)}>Cancel</button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {editMode && (
           <div className="edit-section">

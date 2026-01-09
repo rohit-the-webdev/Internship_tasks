@@ -22,22 +22,29 @@ function RegistrationForm() {
     })
   }
 
-  const handleSubtmit =(e)=>{
+  const handleSubtmit = async (e)=>{
     e.preventDefault();
+    try{
+      const response = await fetch("http://localhost:5000/api/signup",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if(!response.ok){
+        alert(data.message);
+        return;
+      }
+      alert("registration successfull");
+      navigate("/login");
+    } catch(error){
+      alert("srver error. try again");
+    }
 
-    localStorage.setItem("loginEmail", formData.email);
-
-    const data = { ...formData };
-
-    const allUsers = JSON.parse(localStorage.getItem("FormData")) || [];
-    allUsers.push(data);
-
-    localStorage.setItem(
-        "FormData", JSON.stringify(allUsers)
-    )
-    alert("registration successful")
-
-    navigate("/login");
   }
 
   return (
@@ -52,7 +59,7 @@ function RegistrationForm() {
         </div>
 
         <div className="ipgroup mb-3">
-          <input type="text" name='age' className="form-control" onChange={handleChange} required/>
+          <input type="number" name='age' className="form-control" onChange={handleChange} required/>
           <label>Enter Age</label>
         </div>
 
