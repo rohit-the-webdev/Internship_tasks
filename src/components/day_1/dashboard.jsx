@@ -14,6 +14,8 @@ function Dashboard() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmCheck, setConfirmCheck] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const user = localStorage.getItem("loggedinUser");
     if (!user) {
@@ -32,7 +34,7 @@ function Dashboard() {
   };
   const handleUpdateProfile = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/user/update", {
+      const response = await fetch(`${API_URL}/api/user/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +79,7 @@ function Dashboard() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/user/change-password",
+       `${API_URL}/api/user/change-password`,
         {
           method: "PUT",
           headers: {

@@ -13,6 +13,7 @@ function RegistrationForm() {
     password:''
   })
 
+  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const handleChange=(e)=>{
@@ -25,7 +26,7 @@ function RegistrationForm() {
   const handleSubtmit = async (e)=>{
     e.preventDefault();
     try{
-      const response = await fetch("http://localhost:5000/api/signup",{
+      const response = await fetch(`${API_URL}/api/signup`,{
         method:"POST",
         headers:{
           "Content-Type":"application/json",

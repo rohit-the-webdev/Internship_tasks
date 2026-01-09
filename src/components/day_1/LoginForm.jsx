@@ -5,6 +5,8 @@ function LoginForm() {
   const currentEmail = localStorage.getItem("loginEmail");
   const [email, setEmail] = useState(currentEmail || "");
   const [password, setPassword] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
 
   if (currentEmail) {
@@ -15,7 +17,7 @@ function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/login",{
+      const response = await fetch(`${API_URL}/api/login`,{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
