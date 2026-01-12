@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './style/registration.css'
 
 function LoginForm() {
   const currentEmail = localStorage.getItem("loginEmail");

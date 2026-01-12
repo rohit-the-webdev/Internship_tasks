@@ -6,21 +6,21 @@ function Home() {
   return (
     <div className="home-container">
       <h1>Internship Tasks</h1>
+      <p className="subtitle">
+        User Registration & Login System
+      </p>
 
-      <div className="task-card">
-        <h3>Day 1</h3>
-        <p>Registration & Login using LocalStorage</p>
+      <div className="action-card">
+        <Link to="/register" className="btn primary">
+          Go to Registration
+        </Link>
 
-        <div className="btn-group">
-          <Link to="/register" className="btn">Register</Link>
-          <Link to="/login" className="btn outline">Login</Link>
-        </div>
-      </div>
-
-      {/* Later */}
-      <div className="task-card disabled">
-        <h3>Day 2</h3>
-        <p>Coming soon 🚧</p>
+        <p className="login-text">
+          Already registered?{" "}
+          <Link to="/login" className="login-link">
+            Login here
+          </Link>
+        </p>
       </div>
     </div>
   );

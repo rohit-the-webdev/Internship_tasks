@@ -1,48 +1,55 @@
 .home-container {
   min-height: 100vh;
-  background: #f4f6f8;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-}
-
-.home-container h1 {
-  margin-bottom: 30px;
-}
-
-.task-card {
-  background: white;
-  width: 350px;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.task-card.disabled {
-  opacity: 0.5;
-}
-
-.btn-group {
-  margin-top: 15px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.btn {
-  text-decoration: none;
-  padding: 8px 16px;
-  background: #0d6efd;
   color: white;
-  border-radius: 6px;
-  font-weight: 500;
+  text-align: center;
+  padding: 20px;
 }
 
-.btn.outline {
-  background: transparent;
-  border: 2px solid #0d6efd;
-  color: #0d6efd;
+.subtitle {
+  margin-top: 8px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.action-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 14px;
+  margin-top: 30px;
+  width: 320px;
+}
+
+.btn.primary {
+  display: block;
+  background: #ffffff;
+  color: #5a4fcf;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.btn.primary:hover {
+  background: #f0f0ff;
+}
+
+.login-text {
+  font-size: 14px;
+}
+
+.login-link {
+  color: #ffd369;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link:hover {
+  text-decoration: underline;
 }

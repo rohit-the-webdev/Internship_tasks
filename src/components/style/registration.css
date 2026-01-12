@@ -1,0 +1,121 @@
+/* =====================
+   Global
+===================== */
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* =====================
+   Page Background
+===================== */
+.min-vh-100 {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* =====================
+   Glass Form Card
+===================== */
+form {
+  width: 420px;
+  background: rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+}
+
+/* Form Title */
+form h4 {
+  color: #facc15;
+  letter-spacing: 0.5px;
+}
+
+/* =====================
+   Input Group
+===================== */
+.ipgroup {
+  position: relative;
+}
+
+/* Inputs & Textarea */
+.ipgroup input,
+.ipgroup textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.95);
+  color: #1f2937; /* visible text */
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus State */
+.ipgroup input:focus,
+.ipgroup textarea:focus {
+  border-color: #ffd369;
+  box-shadow: 0 0 0 2px rgba(255, 211, 105, 0.35);
+}
+
+/* Textarea */
+.ipgroup textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+/* =====================
+   Floating Label
+===================== */
+.ipgroup label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #6b7280; /* visible gray */
+  pointer-events: none;
+  padding: 0 6px;
+  transition: all 0.45s ease; /* smooth */
+}
+
+/* Floating Effect */
+.ipgroup input:focus ~ label,
+.ipgroup textarea:focus ~ label,
+.ipgroup input:valid ~ label,
+.ipgroup textarea:valid ~ label {
+  top: -2px;
+  font-size: 12px;
+  color: #facc15; /* YELLOW */
+  background: #ffffff; /* WHITE background */
+  border-radius: 6px;
+}
+
+/* =====================
+   Submit Button
+===================== */
+button.btn-primary {
+  background: linear-gradient(135deg, #ffd369, #ffb703);
+  border: none;
+  color: #3a2d6d;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 12px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+button.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 211, 105, 0.45);
+}
+
+/* =====================
+   Mobile Responsive
+===================== */
+@media (max-width: 480px) {
+  form {
+    width: 100%;
+    margin: 0 15px;
+  }
+}
