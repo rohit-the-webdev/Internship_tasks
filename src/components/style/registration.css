@@ -3,32 +3,35 @@
 ===================== */
 body {
   margin: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  color: #1f2937;
 }
 
 /* =====================
    Page Background
 ===================== */
 .min-vh-100 {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #eef2ff, #e5e7eb);
 }
 
 /* =====================
-   Glass Form Card
+   Form Card (Professional Glass)
 ===================== */
 form {
   width: 420px;
-  background: rgba(255, 255, 255, 0.18) !important;
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  padding: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  padding: 28px;
 }
 
 /* Form Title */
 form h4 {
-  color: #facc15;
-  letter-spacing: 0.5px;
+  color: #111827;
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
 /* =====================
@@ -42,21 +45,20 @@ form h4 {
 .ipgroup input,
 .ipgroup textarea {
   width: 100%;
-  padding: 14px;
-  font-size: 15px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.95);
-  color: #1f2937; /* visible text */
+  padding: 14px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.25s ease;
 }
 
 /* Focus State */
 .ipgroup input:focus,
 .ipgroup textarea:focus {
-  border-color: #ffd369;
-  box-shadow: 0 0 0 2px rgba(255, 211, 105, 0.35);
+  border-color: #4f46e5;
 }
 
 /* Textarea */
@@ -71,13 +73,14 @@ form h4 {
 .ipgroup label {
   position: absolute;
   top: 50%;
-  left: 14px;
+  left: 12px;
   transform: translateY(-50%);
   font-size: 14px;
-  color: #6b7280; /* visible gray */
+  color: #6b7280;
   pointer-events: none;
-  padding: 0 6px;
-  transition: all 0.45s ease; /* smooth */
+  background: #ffffff;
+  padding: 0 4px;
+  transition: all 0.3s ease;
 }
 
 /* Floating Effect */
@@ -85,37 +88,34 @@ form h4 {
 .ipgroup textarea:focus ~ label,
 .ipgroup input:valid ~ label,
 .ipgroup textarea:valid ~ label {
-  top: -2px;
+  top: -6px;
   font-size: 12px;
-  color: #facc15; /* YELLOW */
-  background: #ffffff; /* WHITE background */
-  border-radius: 6px;
+  color: #4f46e5;
 }
 
 /* =====================
    Submit Button
 ===================== */
 button.btn-primary {
-  background: linear-gradient(135deg, #ffd369, #ffb703);
+  background: #4f46e5;
   border: none;
-  color: #3a2d6d;
-  font-weight: 700;
-  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
   padding: 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.25s ease;
 }
 
 button.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 211, 105, 0.45);
+  background: #4338ca;
 }
 
 /* =====================
-   Mobile Responsive
+   Mobile
 ===================== */
 @media (max-width: 480px) {
   form {
     width: 100%;
-    margin: 0 15px;
+    margin: 0 16px;
   }
 }
